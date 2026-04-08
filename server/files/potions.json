@@ -1,0 +1,51 @@
+[
+    {
+        "id": 7,
+        "name": "wdwdw",
+        "effect": "wdwdw",
+        "price": 111,
+        "inStock": true
+    },
+    {
+        "id": 1,
+        "name": "Strength Potion",
+        "effect": "+1 str",
+        "price": "100$",
+        "isStock": true
+    },
+    {
+        "id": 2,
+        "name": "Agility Elixir",
+        "effect": "+1 agi",
+        "price": "120$",
+        "isStock": true
+    },
+    {
+        "id": 3,
+        "name": "Mana Flask",
+        "effect": "+50 mp",
+        "price": "80$",
+        "isStock": false
+    },
+    {
+        "id": 4,
+        "name": "Health Potion",
+        "effect": "+100 hp",
+        "price": "50$",
+        "isStock": true
+    },
+    {
+        "id": 5,
+        "name": "Invisibility Brew",
+        "effect": "Invisibility 30s",
+        "price": "500$",
+        "isStock": true
+    },
+    {
+        "id": 6,
+        "name": "Antidote",
+        "effect": "Cures poison",
+        "price": "40$",
+        "isStock": false
+    }
+]

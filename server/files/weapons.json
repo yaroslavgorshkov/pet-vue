@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "name": "Dragon Slayer",
+        "type": "Greatsword",
+        "damage": 85,
+        "isEquipped": true
+    },
+    {
+        "id": 2,
+        "name": "Shadow Step",
+        "type": "Dagger",
+        "damage": 42,
+        "isEquipped": false
+    },
+    {
+        "id": 3,
+        "name": "Stormcaller",
+        "type": "Bow",
+        "damage": 64,
+        "isEquipped": false
+    },
+    {
+        "id": 4,
+        "name": "Sunfire Staff",
+        "type": "Magic Staff",
+        "damage": 92,
+        "isEquipped": true
+    },
+    {
+        "id": 5,
+        "name": "Iron Vanguard",
+        "type": "Mace",
+        "damage": 55,
+        "isEquipped": false
+    }
+]

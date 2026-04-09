@@ -1,0 +1,65 @@
+[
+    {
+        "id": 101,
+        "debtorId": 1,
+        "month": "2026-01",
+        "charge": 1250.5,
+        "payment": 1000
+    },
+    {
+        "id": 102,
+        "debtorId": 1,
+        "month": "2026-02",
+        "charge": 1250.5,
+        "payment": 1500
+    },
+    {
+        "id": 103,
+        "debtorId": 2,
+        "month": "2026-02",
+        "charge": 800,
+        "payment": 800
+    },
+    {
+        "id": 104,
+        "debtorId": 3,
+        "month": "2026-02",
+        "charge": 2100,
+        "payment": 0
+    },
+    {
+        "id": 105,
+        "debtorId": 4,
+        "month": "2026-02",
+        "charge": 1150,
+        "payment": 1150
+    },
+    {
+        "id": 106,
+        "debtorId": 5,
+        "month": "2026-01",
+        "charge": 950,
+        "payment": 500
+    },
+    {
+        "id": 107,
+        "debtorId": 5,
+        "month": "2026-02",
+        "charge": 950,
+        "payment": 450
+    },
+    {
+        "id": 108,
+        "debtorId": 6,
+        "month": "2026-02",
+        "charge": 1400.25,
+        "payment": 1400.25
+    },
+    {
+        "id": 109,
+        "debtorId": 7,
+        "month": "2026-02",
+        "charge": "100",
+        "payment": "300"
+    }
+]

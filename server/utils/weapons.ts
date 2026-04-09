@@ -16,5 +16,5 @@ export const getWeapons = async () => {
 }
 
 export const setWeapons = async (weapons: Weapon[]) => {
-    await writeFile(WEAPONS_FILE, JSON.stringify(weapons), 'utf-8');
+    await writeFile(WEAPONS_FILE, JSON.stringify(weapons, null, 4), 'utf-8');
 }

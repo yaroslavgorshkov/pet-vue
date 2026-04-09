@@ -16,7 +16,7 @@
                     v-model:weapon-type="wTypeFilter"
                 />
                 <WeaponStats :list="filteredList" />
-                <WeaponCreationForm />
+                <WeaponCreationForm @refresh="refreshView"/>
             </div>
         </div>
     </div>

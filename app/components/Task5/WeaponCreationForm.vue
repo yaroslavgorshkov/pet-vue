@@ -16,6 +16,10 @@ const weaponName = ref('');
 const weaponType = ref('');
 const weaponDamage = ref(0);
 
+const emit = defineEmits<{
+    (e: 'refresh'): void;
+}>()
+
 const addWeapon = async () => {
     await $fetch('/api/weapons', {
         method: 'POST',
@@ -25,6 +29,12 @@ const addWeapon = async () => {
             damage: weaponDamage.value
         }
     })
+
+    weaponName.value = ''
+    weaponType.value = ''
+    weaponDamage.value = 0
+
+    emit('refresh');
 }
 
 </script>

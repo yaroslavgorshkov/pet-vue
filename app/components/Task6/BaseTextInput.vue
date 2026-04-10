@@ -17,6 +17,7 @@ const props = defineProps<{
     label: string;
     modelValue: string | number;
     type: 'text' | 'number';
+    placeholder?: string;
 }>();
 
 const emit = defineEmits<{

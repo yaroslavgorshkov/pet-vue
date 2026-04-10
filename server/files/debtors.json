@@ -5,7 +5,7 @@
         "lic": "1002003001",
         "address": "ул. Пушкина, д. 10, кв. 5",
         "phone": "+380671112233",
-        "isActive": false
+        "isActive": true
     },
     {
         "id": 2,

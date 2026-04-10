@@ -1,15 +1,24 @@
-import { getRecords, setRecords } from '~~/server/utils/records';
-import { MonthlyRecord } from '~~/shared/types';
+import { setRecordById } from '~~/server/utils/records';
+import { MonthlyRecordShort } from '~~/shared/types';
 
 type Body = {
     debtorId: number;
-    month: string;
     charge: number;
     payment: number;
+    month: string;
 };
 
 export default defineEventHandler(async (event) => {
+    const recordId = event.context.params?.id;
+    if (recordId === undefined) {
+        throw createError({
+            statusMessage: 'Server error due to invalid ID',
+            statusCode: 500,
+        });
+    }
+
     const body = await readBody<Body>(event);
+
     if (typeof body.charge !== 'number' || Number.isNaN(body.charge)) {
         throw createError({
             message: 'Charge must be numeric',
@@ -62,52 +71,32 @@ export default defineEventHandler(async (event) => {
         });
     }
 
-    const records = await getRecords();
-    const newId =
-        records.length !== 0 ? Math.max(...records.map((r) => r.id)) + 1 : 1;
-    const newRecord: MonthlyRecord = {
-        id: newId,
+    const newRecord: MonthlyRecordShort = {
+        charge: body.charge,
         debtorId: body.debtorId,
         month: body.month,
-        charge: body.charge,
         payment: body.payment,
     };
-    records.push(newRecord);
-    await setRecords(records);
 
-    const debtor = debtors.find((d) => d.id === body.debtorId);
+    await setRecordById(newRecord, Number(recordId));
 
     const debts = await getRecordsForOneDebtor(body.debtorId);
-
-    if (debts.length === 0) {
-        throw createError({
-            message: 'Debts list is empty, cannot calculate total debt',
-            status: 400,
-        });
-    }
-
     const totalDebt =
-        debts.reduce((acc, d) => acc + d.charge, 0) -
-        debts.reduce((acc, d) => acc + d.payment, 0);
+        debts.reduce((acc, r) => acc + r.charge, 0) -
+        debts.reduce((acc, r) => acc + r.payment, 0);
 
-    const resultDebt = totalDebt + (body.charge - body.payment);
-    const isDebtorNow = resultDebt > 0;
-    let resultDebtors;
-    if (debtor !== undefined) {
-        resultDebtors = debtors.map((d) => {
-            if (d.id === body.debtorId) {
-                if (isDebtorNow) {
-                    return { ...d, isActive: true };
-                }
-                return { ...d, isActive: false };
+    const isDebtor = totalDebt > 0;
+    const resultDebtors = debtors.map(d => {
+        if(d.id === body.debtorId) {
+            if(isDebtor) {
+                return {...d, isActive: true}
             } else {
-                return d;
+                return {...d, isActive: false}
             }
-        });
-    } else {
-        resultDebtors = debtors;
-    }
-    await setDebtors(resultDebtors);
+        } else {
+            return d;
+        }
+    })
 
-    return newRecord;
+    await setDebtors(resultDebtors);
 });

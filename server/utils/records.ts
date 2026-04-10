@@ -1,7 +1,7 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { cwd } from 'node:process';
-import { MonthlyRecord } from '~~/shared/types';
+import { MonthlyRecord, MonthlyRecordShort } from '~~/shared/types';
 
 const RECORDS_FILE = join(cwd(), 'server', 'files', 'monthlyDebts.json');
 
@@ -28,6 +28,24 @@ export const getRecords = async () => {
     }
 };
 
+export const getRecordById = async (recordId: number) => {
+    const records = await getRecords();
+    const record = records.find(r => r.id === recordId);
+    return record;
+}
+
 export const setRecords = async (records: MonthlyRecord[]) => {
     await writeFile(RECORDS_FILE, JSON.stringify(records, null, 4), 'utf-8');
 };
+
+export const setRecordById = async (record: MonthlyRecordShort, recordId: number) => {
+    const records = await getRecords();
+    const result = records.map(r => {
+        if(r.id === recordId) {
+            return {...record, id: recordId};
+        } else {
+            return r;
+        }
+    })
+    await setRecords(result);
+}

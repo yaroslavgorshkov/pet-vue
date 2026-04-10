@@ -22,3 +22,10 @@ export type MonthlyRecord = {
     charge: number;
     payment: number;
 };
+
+export type MonthlyRecordShort = {
+    debtorId: number;
+    month: string;
+    charge: number;
+    payment: number;
+};

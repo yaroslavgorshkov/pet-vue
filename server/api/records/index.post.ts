@@ -6,6 +6,7 @@ type Body = {
     month: string;
     charge: number;
     payment: number;
+    totalDebt: number;
 };
 
 export default defineEventHandler(async (event) => {
@@ -21,5 +22,22 @@ export default defineEventHandler(async (event) => {
         payment: body.payment,
     };
     records.push(newRecord);
+
+    const debtors = await getDebtors();
+    const debtor = debtors.find((d) => d.id === body.debtorId);
+    const resultDebt = body.totalDebt + (newRecord.charge - newRecord.payment);
+    const isDebtorNow = resultDebt > 0;
+    let resultDebtors;
+    if (debtor !== undefined) {
+        resultDebtors = debtors.map((d) => {
+            if (isDebtorNow) {
+                return { ...d, isActive: true };
+            }
+            return { ...d, isActive: false };
+        });
+    } else {
+        resultDebtors = debtors;
+    }
+    await setDebtors(resultDebtors);
     await setRecords(records);
 });

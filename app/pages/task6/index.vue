@@ -5,7 +5,7 @@
         <div class="flex gap-3">
             <span v-if="pending">Pending...</span>
             <span v-else-if="error">Error, cant get debtors list</span>
-            <DebtorsList :list="filteredList" />
+            <DebtorsList v-else :list="filteredList" />
             <div class="flex flex-col gap-4">
                 <DebtorFiltersNew
                     v-model:fio-filter="fioFilter"

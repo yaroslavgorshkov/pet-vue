@@ -13,7 +13,10 @@
                         {{ debtor.isActive ? 'yes' : 'no' }}</span
                     >
                 </div>
-                <span v-if="!monthlyDebts"
+                <span
+                    v-if="
+                        monthlyDebts === undefined || monthlyDebts.length === 0
+                    "
                     >This user doesn`t have any debts`</span
                 >
                 <ul v-else class="flex flex-col gap-2 p-3 rounded-md border">
@@ -27,13 +30,13 @@
                         <span>Debtor ID: {{ debt.debtorId }}</span>
                     </li>
                 </ul>
-                <span v-if="!totalDebt">Cannot calculate total debt</span>
+                <span v-if="totalDebt === undefined">Cannot calculate total debt</span>
                 <span v-else>Total debt: {{ totalDebt }}</span>
             </div>
             <form @submit.prevent="addRecord">
                 <BaseTextInput v-model="month" label="Month:" />
-                <BaseTextInput v-model="charge" label="Charge:" />
-                <BaseTextInput v-model="payment" label="Payment:" />
+                <BaseTextInput v-model.number="charge" label="Charge:" />
+                <BaseTextInput v-model.number="payment" label="Payment:" />
                 <button type="submit" class="w-fit border rounded-md p-3">
                     Add monthly record
                 </button>
@@ -54,10 +57,12 @@ const payment = ref(0);
 const route = useRoute();
 const id = Number(route.params.id);
 
-const { data: debtor, refresh: refreshDebtor } = await useFetch<Debtor>(`/api/debtors/${id}`);
-const { data: monthlyDebts, refresh: refreshRecord } = await useFetch<MonthlyRecord[]>(
-    `/api/records/${id}`
+const { data: debtor, refresh: refreshDebtor } = await useFetch<Debtor>(
+    `/api/debtors/${id}`
 );
+const { data: monthlyDebts, refresh: refreshRecord } = await useFetch<
+    MonthlyRecord[]
+>(`/api/records/${id}`);
 
 const totalDebt = computed(() => {
     if (monthlyDebts.value !== undefined) {
@@ -66,7 +71,6 @@ const totalDebt = computed(() => {
             monthlyDebts.value.reduce((acc, r) => acc + r.payment, 0)
         );
     }
-    return null;
 });
 
 const addRecord = async () => {
@@ -77,6 +81,7 @@ const addRecord = async () => {
             month: month.value,
             charge: charge.value,
             payment: payment.value,
+            totalDebt: totalDebt.value
         },
     });
 
@@ -84,6 +89,7 @@ const addRecord = async () => {
     charge.value = 0;
     payment.value = 0;
 
+    await refreshDebtor();
     await refreshRecord();
 };
 </script>

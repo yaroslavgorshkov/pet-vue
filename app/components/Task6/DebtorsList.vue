@@ -1,5 +1,5 @@
 <template>
-    <span v-if="!list">Debtors list is empty</span>
+    <span v-if="list === undefined || list.length === 0">Debtors list is empty</span>
     <ul v-else class="flex flex-col rounded-md border p-4 gap-2 min-w-[300px]">
         <li
             v-for="debtor in list"

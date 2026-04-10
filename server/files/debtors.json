@@ -5,7 +5,7 @@
         "lic": "1002003001",
         "address": "ул. Пушкина, д. 10, кв. 5",
         "phone": "+380671112233",
-        "isActive": true
+        "isActive": false
     },
     {
         "id": 2,
@@ -21,7 +21,7 @@
         "lic": "1002003003",
         "address": "ул. Лермонтова, д. 4, кв. 18",
         "phone": "+380637778899",
-        "isActive": true
+        "isActive": false
     },
     {
         "id": 4,
@@ -37,7 +37,7 @@
         "lic": "1002003005",
         "address": "ул. Шевченко, д. 8, кв. 9",
         "phone": "+380979876543",
-        "isActive": true
+        "isActive": false
     },
     {
         "id": 6,

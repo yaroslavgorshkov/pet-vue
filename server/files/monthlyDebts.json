@@ -60,7 +60,7 @@
         "debtorId": 7,
         "month": "2026-02",
         "charge": "100",
-        "payment": "300"
+        "payment": 300
     },
     {
         "id": 110,
@@ -96,5 +96,26 @@
         "month": "",
         "charge": 1,
         "payment": 2
+    },
+    {
+        "id": 115,
+        "debtorId": 7,
+        "month": "",
+        "charge": 100,
+        "payment": 100
+    },
+    {
+        "id": 116,
+        "debtorId": 3,
+        "month": "",
+        "charge": 100,
+        "payment": 200
+    },
+    {
+        "id": 117,
+        "debtorId": 5,
+        "month": "",
+        "charge": 100,
+        "payment": 100
     }
 ]

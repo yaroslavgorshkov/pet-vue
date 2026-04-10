@@ -17,7 +17,7 @@
                     v-if="
                         monthlyDebts === undefined || monthlyDebts.length === 0
                     "
-                    >This user doesn`t have any debts`</span
+                    >This user doesn`t have any debts</span
                 >
                 <ul v-else class="flex flex-col gap-2 p-3 rounded-md border">
                     <li
@@ -67,8 +67,8 @@ const { data: monthlyDebts, refresh: refreshRecord } = await useFetch<
 const totalDebt = computed(() => {
     if (monthlyDebts.value !== undefined) {
         return (
-            monthlyDebts.value.reduce((acc, r) => acc + r.charge, 0) -
-            monthlyDebts.value.reduce((acc, r) => acc + r.payment, 0)
+            monthlyDebts.value.reduce((acc, r) => acc + Number(r.charge), 0) -
+            monthlyDebts.value.reduce((acc, r) => acc + Number(r.payment), 0)
         );
     }
 });
@@ -79,8 +79,8 @@ const addRecord = async () => {
         body: {
             debtorId: id,
             month: month.value,
-            charge: charge.value,
-            payment: payment.value,
+            charge: Number(charge.value),
+            payment: Number(payment.value),
             totalDebt: totalDebt.value
         },
     });

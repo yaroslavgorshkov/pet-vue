@@ -21,7 +21,7 @@
         "lic": "1002003003",
         "address": "ул. Лермонтова, д. 4, кв. 18",
         "phone": "+380637778899",
-        "isActive": false
+        "isActive": true
     },
     {
         "id": 4,
@@ -37,7 +37,7 @@
         "lic": "1002003005",
         "address": "ул. Шевченко, д. 8, кв. 9",
         "phone": "+380979876543",
-        "isActive": false
+        "isActive": true
     },
     {
         "id": 6,
@@ -53,6 +53,46 @@
         "lic": "121212",
         "address": "Puławska 248",
         "phone": "796492823",
+        "isActive": false
+    },
+    {
+        "id": 8,
+        "fullName": "Lalka",
+        "lic": "12122332",
+        "address": "Palka 228",
+        "phone": "+380980989098",
+        "isActive": false
+    },
+    {
+        "id": 9,
+        "fullName": "Piska",
+        "lic": "3727673",
+        "address": "Hz",
+        "phone": "+380989876543",
+        "isActive": false
+    },
+    {
+        "id": 10,
+        "fullName": "hwdiudw",
+        "lic": "787823",
+        "address": "wlkdlnddw",
+        "phone": "+380987667809",
+        "isActive": false
+    },
+    {
+        "id": 11,
+        "fullName": "Lalka2",
+        "lic": "9999",
+        "address": "Hzlol",
+        "phone": "+380987654321",
+        "isActive": false
+    },
+    {
+        "id": 12,
+        "fullName": "Lalka4",
+        "lic": "whdduw",
+        "address": "wdjdwd",
+        "phone": "+380989759293",
         "isActive": false
     }
 ]

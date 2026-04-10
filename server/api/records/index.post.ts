@@ -30,10 +30,14 @@ export default defineEventHandler(async (event) => {
     let resultDebtors;
     if (debtor !== undefined) {
         resultDebtors = debtors.map((d) => {
-            if (isDebtorNow) {
-                return { ...d, isActive: true };
+            if (d.id === body.debtorId) {
+                if (isDebtorNow) {
+                    return { ...d, isActive: true };
+                }
+                return { ...d, isActive: false };
+            } else {
+                return d;
             }
-            return { ...d, isActive: false };
         });
     } else {
         resultDebtors = debtors;

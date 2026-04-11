@@ -34,7 +34,7 @@
                         >
                             Delete record
                         </button>
-                        <NuxtLink class="rounded-md p-3 border" :to="`/task6/debtors/${debtorId}/records/${debt.id}`">
+                        <NuxtLink class="rounded-md p-3 border flex justify-center" :to="`/task6/debtors/${debtorId}/records/${debt.id}`">
                             See details
                         </NuxtLink>
                     </li>

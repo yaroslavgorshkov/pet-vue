@@ -1,5 +1,5 @@
 import { setRecordById } from '~~/server/utils/records';
-import { MonthlyRecordShort } from '~~/shared/types';
+import { MonthlyRecord, MonthlyRecordShort } from '~~/shared/types';
 
 type Body = {
     debtorId: number;
@@ -21,53 +21,54 @@ export default defineEventHandler(async (event) => {
 
     if (typeof body.charge !== 'number' || Number.isNaN(body.charge)) {
         throw createError({
-            message: 'Charge must be numeric',
-            status: 400,
+            statusMessage: 'Charge must be numeric',
+            statusCode: 400,
         });
     } else if (body.charge < 0) {
         throw createError({
-            message: 'Charge must be positive number',
-            status: 400,
+            statusMessage: 'Charge must be positive number',
+            statusCode: 400,
         });
     }
 
     if (typeof body.payment !== 'number' || Number.isNaN(body.payment)) {
         throw createError({
-            message: 'Payment must be numeric',
-            status: 400,
+            statusMessage: 'Payment must be numeric',
+            statusCode: 400,
         });
     } else if (body.payment < 0) {
         throw createError({
-            message: 'Payment must be positive number',
-            status: 400,
+            statusMessage: 'Payment must be positive number',
+            statusCode: 400,
         });
     }
 
     const debtors = await getDebtors();
     const isAnyDebtorWithNewRecordDebtorId = debtors.some(
         (d) => d.id === body.debtorId
-    );
+    );    
+    
     if (typeof body.debtorId !== 'number' || Number.isNaN(body.debtorId)) {
         throw createError({
-            message: 'Debtor ID must be numeric',
-            status: 400,
+            statusMessage: 'Debtor ID must be numeric',
+            statusCode: 400,
         });
     } else if (!isAnyDebtorWithNewRecordDebtorId) {
         throw createError({
-            message: 'There are no debtors with this Debtor ID',
-            status: 400,
+            statusMessage: 'There are no debtors with this Debtor ID',
+            statusCode: 400,
         });
     }
 
     if (typeof body.month !== 'string') {
         throw createError({
-            message: 'Month value must be string',
-            status: 400,
+            statusMessage: 'Month value must be string',
+            statusCode: 400,
         });
     } else if (!/^(19|20)\d{2}-(0[1-9]|1[0-2])$/.test(body.month)) {
         throw createError({
-            message: 'Month is not in valid form',
-            status: 400,
+            statusMessage: 'Month is not in valid form',
+            statusCode: 400,
         });
     }
 
@@ -99,4 +100,8 @@ export default defineEventHandler(async (event) => {
     })
 
     await setDebtors(resultDebtors);
+
+    const patchedRecord = await getRecordById(Number(recordId)) as MonthlyRecord;
+
+    return patchedRecord;
 });

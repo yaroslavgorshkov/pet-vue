@@ -1,5 +1,9 @@
 <template>
-    <div class="flex flex-col gap-3 p-4 rounded-md border">
+    <div v-if="debtor === undefined" class="flex flex-col gap-3 p-4">
+        <span>There are no debtors with this ID</span>
+        <NuxtLink :to="'/task6'"> Return home </NuxtLink>
+    </div>
+    <div v-else class="flex flex-col gap-3 p-4 rounded-md border">
         <span>Record changing menu</span>
         <div class="w-full h-px bg-black"></div>
         <span v-if="record === undefined"> Record is not found </span>
@@ -8,8 +12,8 @@
         <div v-else class="flex flex-col gap-2 p-2 rounded-md border">
             <span>Debtor ID: {{ record.debtorId }}</span>
             <span>Record ID: {{ record.id }}</span>
-            <span>Charge: {{ record.charge }}</span>
             <span>Month: {{ record.month }}</span>
+            <span>Charge: {{ record.charge }}</span>
             <span>Payment: {{ record.payment }}</span>
         </div>
         <form
@@ -23,6 +27,11 @@
                 placeholder="Enter month"
                 @blur="validateMonth"
             />
+            <span
+                v-if="formValidationMessage.month !== ''"
+                class="text-sm text-red-400"
+                >{{ formValidationMessage.month }}</span
+            >
             <BaseTextInput
                 type="number"
                 v-model="charge"
@@ -30,6 +39,11 @@
                 placeholder="Enter charge"
                 @blur="validateCharge"
             />
+            <span
+                v-if="formValidationMessage.charge !== ''"
+                class="text-sm text-red-400"
+                >{{ formValidationMessage.charge }}</span
+            >
             <BaseTextInput
                 type="number"
                 v-model="payment"
@@ -37,14 +51,38 @@
                 placeholder="Enter payment"
                 @blur="validatePayment"
             />
-            <button
-                :disabled="!isFormValid"
-                type="submit"
-                class="p-3 rounded-md border"
+            <span
+                v-if="formValidationMessage.payment !== ''"
+                class="text-sm text-red-400"
+                >{{ formValidationMessage.payment }}</span
             >
-                Patch record
-            </button>
+            <div class="flex gap-3 items-center">
+                <button
+                    :disabled="!isFormValid"
+                    type="submit"
+                    class="p-3 rounded-md border w-fit"
+                >
+                    Patch record
+                </button>
+                <span
+                    v-if="formResponse.message !== ''"
+                    class="text-sm font-bold"
+                    :class="
+                        formResponse.isSucceed
+                            ? 'text-green-400'
+                            : 'text-red-400'
+                    "
+                >
+                    {{ formResponse.message }}
+                </span>
+            </div>
         </form>
+        <NuxtLink
+            :to="`/task6/debtors/${debtorId}`"
+            class="p-3 rounded-md border-[2px] w-fit"
+        >
+            Return to debtor info
+        </NuxtLink>
     </div>
 </template>
 
@@ -54,6 +92,9 @@ import type { MonthlyRecord } from '~~/shared/types';
 
 const route = useRoute();
 const debtorId = route.params.debtorId;
+
+const { data: debtor } = await useFetch(`/api/debtors/${debtorId}`);
+
 const recordId = route.params.recordId;
 
 const {
@@ -167,9 +208,8 @@ const refreshForm = async (record: MonthlyRecord) => {
 
     formResponse.value = {
         isSucceed: true,
-        message: `Successfully patched record user ${debtorId} with id ${record.id}`
-    }
-
+        message: `Successfully patched record user ${debtorId} with id ${record.id}`,
+    };
     await refresh();
 };
 
@@ -223,6 +263,7 @@ const formResponse = ref<FormResponse>({
     message: '',
 });
 
+
 const patchRecord = async () => {
     if (!revalidateForm()) return;
 
@@ -232,22 +273,29 @@ const patchRecord = async () => {
             {
                 method: 'PATCH',
                 body: {
-                    debtorId: debtorId,
+                    debtorId: Number(debtorId),
                     charge: charge.value,
                     payment: payment.value,
                     month: month.value,
                 },
             }
-        );
+        );        
 
         await refreshForm(patchedRecord);
-    } catch (err: any) {} finally {
+    } catch (err: any) {
+        formResponse.value = {
+            isSucceed: false,
+            message: err.statusMessage
+                ? `Message: ${err.statusMessage}, code: ${err.statusCode}`
+                : 'Error during patching changes',
+        };
+    } finally {
         setTimeout(() => {
             formResponse.value = {
                 isSucceed: false,
-                message: ''
-            }
-        }, 10000)
+                message: '',
+            };
+        }, 10000);
     }
 };
 </script>

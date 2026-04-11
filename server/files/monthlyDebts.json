@@ -49,10 +49,10 @@
         "payment": 300
     },
     {
-        "id": 110,
+        "charge": 200,
         "debtorId": 1,
-        "month": "2026-04",
-        "charge": 100,
-        "payment": 50
+        "month": "2026-05",
+        "payment": 0,
+        "id": 110
     }
 ]

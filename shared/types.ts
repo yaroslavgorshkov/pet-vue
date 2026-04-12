@@ -29,3 +29,20 @@ export type MonthlyRecordShort = {
     charge: number;
     payment: number;
 };
+
+export type Project = {
+    id: number;
+    code: string;
+    title: string;
+    owner: string;
+    description: string;
+    isOverBudget: boolean;
+}
+
+export type MonthlyExpense = {
+    id: number;
+    projectId: number;
+    month: string;
+    planned: number;
+    actual: number;
+}

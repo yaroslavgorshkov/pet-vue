@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "code": "PROJ-001",
+        "title": "Quantum Leap Framework",
+        "owner": "Yaroslav Gorshkov",
+        "description": "Development of a high-performance Minecraft engine wrapper.",
+        "isOverBudget": true
+    },
+    {
+        "id": 2,
+        "code": "PROJ-002",
+        "title": "Old Man Dark Fantasy",
+        "owner": "Yaroslav Gorshkov",
+        "description": "Large-scale dark fantasy mod with complex combat mechanics.",
+        "isOverBudget": true
+    },
+    {
+        "id": 3,
+        "code": "PROJ-003",
+        "title": "Nuxt 3 Dashboard",
+        "owner": "Alex Volkov",
+        "description": "Internal tracking system using Vue 3 and Tailwind CSS.",
+        "isOverBudget": false
+    },
+    {
+        "id": 4,
+        "code": "PROJ-004",
+        "title": "GD Neuro-Analysis",
+        "owner": "Elena Smith",
+        "description": "Study of frame-perfect reactions in Geometry Dash.",
+        "isOverBudget": false
+    },
+    {
+        "id": 5,
+        "code": "PROJ-005",
+        "title": "Legacy Support",
+        "owner": "Ivan Petrov",
+        "description": "Providing for future generations through digital assets.",
+        "isOverBudget": true
+    }
+]

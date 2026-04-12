@@ -1,0 +1,79 @@
+[
+    {
+        "id": 103,
+        "projectId": 2,
+        "month": "2026-01",
+        "planned": 2000,
+        "actual": 2500
+    },
+    {
+        "id": 104,
+        "projectId": 2,
+        "month": "2026-02",
+        "planned": 2000,
+        "actual": 2100
+    },
+    {
+        "id": 105,
+        "projectId": 3,
+        "month": "2026-01",
+        "planned": 500,
+        "actual": 450
+    },
+    {
+        "id": 106,
+        "projectId": 3,
+        "month": "2026-02",
+        "planned": 500,
+        "actual": 500
+    },
+    {
+        "id": 107,
+        "projectId": 4,
+        "month": "2026-01",
+        "planned": 1200,
+        "actual": 1100
+    },
+    {
+        "id": 108,
+        "projectId": 4,
+        "month": "2026-02",
+        "planned": 1200,
+        "actual": 1200
+    },
+    {
+        "id": 109,
+        "projectId": 5,
+        "month": "2026-01",
+        "planned": 3000,
+        "actual": 3500
+    },
+    {
+        "id": 110,
+        "projectId": 5,
+        "month": "2026-02",
+        "planned": 3000,
+        "actual": 4000
+    },
+    {
+        "id": 111,
+        "projectId": 1,
+        "month": "2026-01",
+        "planned": 1000,
+        "actual": 950
+    },
+    {
+        "id": 112,
+        "projectId": 1,
+        "month": "2026-02",
+        "planned": 1000,
+        "actual": 1500
+    },
+    {
+        "id": 113,
+        "projectId": 1,
+        "month": "2026-03",
+        "planned": 1000,
+        "actual": 1000
+    }
+]

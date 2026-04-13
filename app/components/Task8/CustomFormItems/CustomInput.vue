@@ -9,6 +9,7 @@
             :type="props.type"
             :placeholder="props.placeholder"
             @input="onInput"
+            @blur="onBlur"
         />
     </div>
 </template>
@@ -21,10 +22,24 @@ const props = defineProps<{
     type: 'text' | 'number';
 }>();
 
+const emit = defineEmits<{
+    (e: 'update:modelValue', value: string | number): void;
+    (e: 'blur'): void;
+}>();
+
 const onInput = (event: Event) => {
     const target = event.target as HTMLInputElement;
     const rawValue = target.value;
-    return rawValue;
-}
+    let actualValue;
+    if (props.type === 'number') {
+        actualValue = rawValue === '' ? '' : Number(rawValue);
+    } else {
+        actualValue = rawValue;
+    }
+    emit('update:modelValue', actualValue);
+};
 
+const onBlur = () => {
+    emit('blur');
+};
 </script>

@@ -1,0 +1,32 @@
+.box-col-md {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border-radius: 6px;
+    border-width: 1px;
+    padding: 16px;
+}
+
+.box-col-sm {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-radius: 6px;
+    border-width: 1px;
+    padding: 12px;
+}
+
+.box-col-xs {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-radius: 6px;
+    border-width: 1px;
+    padding: 8px;
+}
+
+.line {
+    height: 1px;
+    width: 100%;
+    background-color: black;
+}

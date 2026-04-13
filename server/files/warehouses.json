@@ -1,0 +1,58 @@
+[
+    {
+        "id": 1,
+        "title": "Central Hub",
+        "code": "WH-001",
+        "manager": "Yaroslav Gorshkov",
+        "city": "Kyiv",
+        "isInDeficit": false
+    },
+    {
+        "id": 2,
+        "title": "East Logistics",
+        "code": "WH-002",
+        "manager": "Alex Smith",
+        "city": "Kharkiv",
+        "isInDeficit": true
+    },
+    {
+        "id": 3,
+        "title": "South Port",
+        "code": "WH-003",
+        "manager": "Maria Garcia",
+        "city": "Odesa",
+        "isInDeficit": false
+    },
+    {
+        "id": 4,
+        "title": "West Storage",
+        "code": "WH-004",
+        "manager": "Ivan Petrenko",
+        "city": "Lviv",
+        "isInDeficit": true
+    },
+    {
+        "id": 5,
+        "title": "North Depot",
+        "code": "WH-005",
+        "manager": "Elena Voronina",
+        "city": "Chernihiv",
+        "isInDeficit": false
+    },
+    {
+        "id": 6,
+        "title": "River Terminal",
+        "code": "WH-006",
+        "manager": "Dmitry Volkov",
+        "city": "Dnipro",
+        "isInDeficit": false
+    },
+    {
+        "id": 7,
+        "title": "Mountain Cache",
+        "code": "WH-007",
+        "manager": "Anna Koval",
+        "city": "Ivano-Frankivsk",
+        "isInDeficit": true
+    }
+]

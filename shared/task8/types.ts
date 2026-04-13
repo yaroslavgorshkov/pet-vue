@@ -1,4 +1,4 @@
-type Warehouse = {
+export type Warehouse = {
     id: number;
     title: string;
     code: string;
@@ -7,7 +7,7 @@ type Warehouse = {
     isInDeficit: boolean;
 };
 
-type MonthlyMovement = {
+export type MonthlyMovement = {
     id: number;
     warehouseId: number;
     month: string;

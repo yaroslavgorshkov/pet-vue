@@ -23,6 +23,39 @@ const useAddWarehouse = (onRefreshWarehouses: () => void) => {
         }
     );
 
+    onMounted(() => {
+        const addWarehouseFormData = localStorage.getItem(
+            'addWarehouseFormData'
+        );
+        if (addWarehouseFormData === null) {
+            title.value = '';
+            code.value = '';
+            manager.value = '';
+            city.value = '';
+            return;
+        }
+        try {
+            type FormData = {
+                title: string;
+                code: string;
+                manager: string;
+                city: string;
+            };
+            const addWarehouseFormDataParsed: FormData =
+                JSON.parse(addWarehouseFormData);
+
+            title.value = addWarehouseFormDataParsed.title;
+            code.value = addWarehouseFormDataParsed.code;
+            manager.value = addWarehouseFormDataParsed.manager;
+            city.value = addWarehouseFormDataParsed.city;
+        } catch {
+            title.value = '';
+            code.value = '';
+            manager.value = '';
+            city.value = '';
+        }
+    });
+
     type FormValidationMessages = {
         title: string;
         code: string;
@@ -71,91 +104,6 @@ const useAddWarehouse = (onRefreshWarehouses: () => void) => {
             isFormTouched.value.manager &&
             isFormTouched.value.title
         );
-    });
-
-    watch(
-        [formValidationMessages, isFormTouched],
-        ([formValidationMessagesNew, isFormTouchedNew]) => {
-            const addWarehouseFormMetadata = {
-                formValidationMessages: formValidationMessagesNew,
-                isFormTouched: isFormTouchedNew,
-            };
-            localStorage.setItem(
-                'addWarehouseFormMetadata',
-                JSON.stringify(addWarehouseFormMetadata)
-            );
-        }
-    );
-
-    onMounted(() => {
-        const addWarehouseFormData = localStorage.getItem(
-            'addWarehouseFormData'
-        );
-        const addWarehouseFormMetadata = localStorage.getItem(
-            'addWarehouseFormMetadata'
-        );
-        try {
-            if (
-                addWarehouseFormData === null ||
-                addWarehouseFormMetadata === null
-            ) {
-                throw createError({});
-            }
-            type AddWarehouseFormData = {
-                title: string;
-                code: string;
-                manager: string;
-                city: string;
-            };
-
-            type AddWarehouseFormMetadata = {
-                formValidationMessages: FormValidationMessages;
-                isFormTouched: IsFormTouched;
-            };
-
-            const addWarehouseFormDataParsed: AddWarehouseFormData =
-                JSON.parse(addWarehouseFormData);
-            const addWarehouseFormMetadataParsed: AddWarehouseFormMetadata =
-                JSON.parse(addWarehouseFormMetadata);
-
-            title.value = addWarehouseFormDataParsed.title;
-            city.value = addWarehouseFormDataParsed.city;
-            code.value = addWarehouseFormDataParsed.code;
-            manager.value = addWarehouseFormDataParsed.manager;
-
-            formValidationMessages.value = {
-                city: addWarehouseFormMetadataParsed.formValidationMessages
-                    .city,
-                code: addWarehouseFormMetadataParsed.formValidationMessages
-                    .code,
-                manager:
-                    addWarehouseFormMetadataParsed.formValidationMessages
-                        .manager,
-                title: addWarehouseFormMetadataParsed.formValidationMessages
-                    .title,
-            };
-
-            isFormTouched.value = {
-                city: false,
-                code: false,
-                manager: false,
-                title: false,
-            };
-        } catch {
-            formValidationMessages.value = {
-                city: '',
-                code: '',
-                manager: '',
-                title: '',
-            };
-
-            isFormTouched.value = {
-                city: false,
-                code: false,
-                manager: false,
-                title: false,
-            };
-        }
     });
 
     const validateTitle = () => {

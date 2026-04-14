@@ -5,7 +5,7 @@
         "code": "WH-001",
         "manager": "Yaroslav Gorshkov",
         "city": "Kyiv",
-        "isInDeficit": false
+        "isInDeficit": true
     },
     {
         "id": 2,

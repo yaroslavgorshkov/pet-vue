@@ -8,7 +8,7 @@ import type { ActionResponse, MonthlyMovement } from '~~/shared/task8/types';
 const useAddMovement = (onRefresh: () => void) => {
     const month = ref('');
     const incoming = ref<number | ''>('');
-    const outgoing = ref<number | ''>('');    
+    const outgoing = ref<number | ''>('');
 
     type FormValidationMessages = {
         month: string;
@@ -200,6 +200,48 @@ const useAddMovement = (onRefresh: () => void) => {
             };
         }
     };
+
+    watch(
+        [month, incoming, outgoing],
+        ([monthNew, incomingNew, outgoingNew]) => {
+            const addMovementFormData = {
+                month: monthNew,
+                incoming: incomingNew,
+                outgoing: outgoingNew,
+            };
+            localStorage.setItem(
+                'addMovementFormData',
+                JSON.stringify(addMovementFormData)
+            );
+        }
+    );
+
+    onMounted(() => {
+        const addMovementFormData = localStorage.getItem('addMovementFormData');
+        if (addMovementFormData === null) {
+            month.value = '';
+            incoming.value = '';
+            outgoing.value = '';
+            return;
+        }
+        try {
+            type FormData = {
+                month: string;
+                incoming: number | '';
+                outgoing: number | '';
+            };
+            const addWarehouseFormDataParsed: FormData =
+                JSON.parse(addMovementFormData);
+
+            month.value = addWarehouseFormDataParsed.month;
+            incoming.value = addWarehouseFormDataParsed.incoming;
+            outgoing.value = addWarehouseFormDataParsed.outgoing;
+        } catch {
+            month.value = '';
+            incoming.value = '';
+            outgoing.value = '';
+        }
+    });
 
     return {
         month,

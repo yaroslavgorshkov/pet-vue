@@ -8,10 +8,10 @@
     },
     {
         "id": 2,
-        "warehouseId": 1,
-        "month": "2026-03",
         "incoming": 300,
-        "outgoing": 200
+        "month": "2026-03",
+        "outgoing": 200,
+        "warehouseId": 1
     },
     {
         "id": 3,

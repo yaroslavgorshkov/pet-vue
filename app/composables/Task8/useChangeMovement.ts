@@ -14,70 +14,6 @@ const useChangeMovement = (props: Props, refresh: () => void) => {
     const incoming = ref<number | ''>('');
     const outgoing = ref<number | ''>('');
 
-    type FormValues = {
-        month: string;
-        incoming: number | '';
-        outgoing: number | '';
-    };
-
-    watch(
-        [month, incoming, outgoing],
-        ([monthNew, incomingNew, outgoingNew]) => {
-            const changeMovementFormValues = {
-                month: monthNew,
-                incoming: incomingNew,
-                outgoing: outgoingNew,
-            };
-
-            localStorage.setItem(
-                'changeMovementFormValues',
-                JSON.stringify(changeMovementFormValues)
-            );
-        }
-    );
-
-    onMounted(() => {
-        const changeMovementFormValues = localStorage.getItem(
-            'changeMovementFormValues'
-        );
-        if (changeMovementFormValues === null) {
-            if (props.movement !== undefined) {
-                month.value = props.movement.month;
-                incoming.value = props.movement.incoming;
-                outgoing.value = props.movement.outgoing;
-                return;
-            }
-            month.value = '';
-            incoming.value = '';
-            outgoing.value = '';
-            return;
-        }
-        try {
-            const changeMovementFormValuesParsed = JSON.parse(
-                changeMovementFormValues
-            ) as FormValues;
-            if (
-                changeMovementFormValuesParsed.incoming === '' &&
-                changeMovementFormValuesParsed.month === '' &&
-                changeMovementFormValuesParsed.outgoing === ''
-            ) {
-                if (props.movement !== undefined) {
-                    month.value = props.movement.month;
-                    incoming.value = props.movement.incoming;
-                    outgoing.value = props.movement.outgoing;
-                    return;
-                }
-            }
-            month.value = changeMovementFormValuesParsed.month;
-            incoming.value = changeMovementFormValuesParsed.incoming;
-            outgoing.value = changeMovementFormValuesParsed.outgoing;
-        } catch {
-            month.value = '';
-            incoming.value = '';
-            outgoing.value = '';
-        }
-    });
-
     type FormValidationMessages = {
         month: string;
         incoming: string;
@@ -100,83 +36,28 @@ const useChangeMovement = (props: Props, refresh: () => void) => {
         outgoing: false,
     });
 
+    watch(
+        () => props.movement,
+        (newMovement) => {
+            if (newMovement === undefined) {
+                month.value = '';
+                incoming.value = '';
+                outgoing.value = '';
+                return;
+            }
+            month.value = newMovement.month;
+            incoming.value = newMovement.incoming;
+            outgoing.value = newMovement.outgoing;
+            isFormTouched.value.month = true;
+            isFormTouched.value.incoming = true;
+            isFormTouched.value.outgoing = true;
+        },
+        { immediate: true }
+    );
+
     const formResponse = ref<ActionResponse>({
         isSucceed: false,
         message: '',
-    });
-
-    type FormMetadata = {
-        formValidationMessages: FormValidationMessages;
-        isFormTouched: IsFormTouched;
-        formResponse: ActionResponse;
-    };
-
-    watch(
-        [formValidationMessages, isFormTouched, formResponse],
-        ([formValidationMessagesNew, isFormTouchedNew, formResponseNew]) => {
-            const changeMovementFormMetadata: FormMetadata = {
-                formResponse: formResponseNew,
-                formValidationMessages: formValidationMessagesNew,
-                isFormTouched: isFormTouchedNew,
-            };
-
-            localStorage.setItem(
-                'changeMovementFormMetadata',
-                JSON.stringify(changeMovementFormMetadata)
-            );
-        }
-    );
-
-    onMounted(() => {
-        const changeMovementFormMetadata = localStorage.getItem(
-            'changeMovementFormMetadata'
-        );
-        if (changeMovementFormMetadata === null) {
-            formResponse.value = {
-                isSucceed: false,
-                message: '',
-            };
-
-            formValidationMessages.value = {
-                incoming: '',
-                month: '',
-                outgoing: '',
-            };
-
-            isFormTouched.value = {
-                incoming: false,
-                month: false,
-                outgoing: false,
-            };
-            return;
-        }
-        try {
-            const changeMovementFormMetadataParsed = JSON.parse(
-                changeMovementFormMetadata
-            ) as FormMetadata;
-            formResponse.value = changeMovementFormMetadataParsed.formResponse;
-            formValidationMessages.value =
-                changeMovementFormMetadataParsed.formValidationMessages;
-            isFormTouched.value =
-                changeMovementFormMetadataParsed.isFormTouched;
-        } catch {
-            formResponse.value = {
-                isSucceed: false,
-                message: '',
-            };
-
-            formValidationMessages.value = {
-                incoming: '',
-                month: '',
-                outgoing: '',
-            };
-
-            isFormTouched.value = {
-                incoming: false,
-                month: false,
-                outgoing: false,
-            };
-        }
     });
 
     const isFormValid = computed(() => {

@@ -15,7 +15,7 @@ export type MonthlyMovement = {
     outgoing: number;
 };
 
-export type FormResponse = {
+export type ActionResponse = {
     isSucceed: boolean;
     message: string;
 }

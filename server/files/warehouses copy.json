@@ -54,13 +54,5 @@
         "manager": "Anna Koval",
         "city": "Ivano-Frankivsk",
         "isInDeficit": true
-    },
-    {
-        "city": "KR",
-        "code": "code-1",
-        "manager": "Ya",
-        "title": "Lalka",
-        "id": 8,
-        "isInDeficit": false
     }
 ]

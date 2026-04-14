@@ -10,7 +10,7 @@ type Emits = {
     emitOnlyDeficitFilter: (value: boolean) => void;
 };
 
-export const useWarehouseFilters = (props: Props, emits: Emits) => {
+const useWarehouseFilters = (props: Props, emits: Emits) => {
     const titleFilterModel = computed({
         get: () => props.titleFilter,
         set: (value: string) => {

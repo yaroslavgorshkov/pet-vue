@@ -1,5 +1,5 @@
 <template>
-    <div class="flex rounded-md border">
+    <div class="flex rounded-md border gap-3">
         <span class="p-4 pr-0 rounded-md rounded-r-none">
             {{ props.label }}
         </span>

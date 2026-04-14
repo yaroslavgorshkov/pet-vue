@@ -96,12 +96,5 @@
         "month": "2026-03",
         "incoming": 100,
         "outgoing": 300
-    },
-    {
-        "incoming": 1000,
-        "month": "2026-02",
-        "outgoing": 1100,
-        "warehouseId": 8,
-        "id": 15
     }
 ]

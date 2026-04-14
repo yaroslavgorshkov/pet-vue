@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="flex flex-col gap-3">
         <span>Filters</span>
         <div class="line"></div>
         <div class="box-col-md">
@@ -12,7 +12,7 @@
             <CustomInput
                 label="Code: "
                 v-model="codeFilterModel"
-                placeholder="enter title"
+                placeholder="enter code"
                 type="text"
             />
             <CustomCheckbox

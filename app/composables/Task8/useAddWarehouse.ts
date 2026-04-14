@@ -1,7 +1,7 @@
 import { isEmpty, isCodeUnique, isPositiveNumber } from '#shared/task8/utils';
-import type { FormResponse, Warehouse } from '~~/shared/task8/types';
+import type { ActionResponse, Warehouse } from '~~/shared/task8/types';
 
-export const useAddWarehouse = async (onRefreshWarehouses: () => void) => {
+const useAddWarehouse = (onRefreshWarehouses: () => void) => {
     const title = ref('');
     const code = ref('');
     const manager = ref('');
@@ -174,7 +174,7 @@ export const useAddWarehouse = async (onRefreshWarehouses: () => void) => {
         refresh,
         pending,
         error,
-    } = await useFetch<Warehouse[]>('/api/warehouses');
+    } = useFetch<Warehouse[]>('/api/warehouses');
 
     const validateCode = () => {
         if (warehouses.value === undefined) return;
@@ -212,7 +212,7 @@ export const useAddWarehouse = async (onRefreshWarehouses: () => void) => {
         }
     };
 
-    const formResponse = ref<FormResponse>({
+    const formResponse = ref<ActionResponse>({
         isSucceed: false,
         message: '',
     });

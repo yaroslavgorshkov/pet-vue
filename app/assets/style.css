@@ -30,3 +30,10 @@
     width: 100%;
     background-color: black;
 }
+
+.figure {
+    padding: 16px;
+    width: fit-content;
+    border-radius: 6px;
+    border-width: 1px;
+}

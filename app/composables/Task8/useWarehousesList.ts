@@ -1,7 +1,7 @@
-import type { FormResponse, Warehouse } from '~~/shared/task8/types';
+import type { ActionResponse, Warehouse } from '~~/shared/task8/types';
 
-export const useWarehouseList = (onRefresh: () => void) => {
-    const formResponse = ref<FormResponse>({
+const useWarehouseList = (onRefresh: () => void) => {
+    const formResponse = ref<ActionResponse>({
         isSucceed: false,
         message: '',
     });

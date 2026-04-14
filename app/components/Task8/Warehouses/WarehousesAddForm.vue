@@ -1,4 +1,6 @@
 <template>
+    <span>Add new warehouse</span>
+    <div class="line"></div>
     <div class="box-col-md">
         <CustomInput
             type="text"
@@ -48,7 +50,7 @@
             class="text-sm text-red-500"
             >{{ formValidationMessages.city }}</span
         >
-        <button :disabled="isFormValid" @click="addWarehouse">
+        <button :disabled="!isFormValid" @click="addWarehouse" class="figure">
             Add warehouse
         </button>
         <span
@@ -63,6 +65,7 @@
 <script setup lang="ts">
 import useAddWarehouse from '~/composables/Task8/useAddWarehouse';
 import CustomInput from '../CustomFormItems/CustomInput.vue';
+import '../../../assets/style.css';
 
 const emit = defineEmits<{
     (e: 'refresh'): void;
@@ -85,5 +88,5 @@ const {
     validateCode,
     validateManager,
     validateTitle,
-} = await useAddWarehouse(onRefreshWarehouses);
+} = useAddWarehouse(onRefreshWarehouses);
 </script>

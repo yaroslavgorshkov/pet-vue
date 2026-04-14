@@ -1,5 +1,5 @@
 <template>
-    <ul class="box-col-md">
+    <ul class="box-col-md max-h-[800px] min-w-[600px] overflow-y-auto">
         <span
             class="text-sm"
             :class="formResponse.isSucceed ? 'text-green-500' : 'text-red-500'"
@@ -12,7 +12,12 @@
             <span>City: {{ w.city }}</span>
             <span>Is in deficit?: {{ w.isInDeficit ? 'yes' : 'no' }}</span>
             <div class="flex gap-3 justify-evenly">
-                <button @click="deleteWarehouse(w.id)">Delete</button>
+                <NuxtLink :to="`/task8/warehouses/${w.id}`" class="figure">
+                    See info
+                </NuxtLink>
+                <button @click="deleteWarehouse(w.id)" class="figure">
+                    Delete
+                </button>
             </div>
         </li>
     </ul>
@@ -33,7 +38,7 @@ const emit = defineEmits<{
 
 const onRefresh = () => {
     emit('refresh');
-}
+};
 
 const { deleteWarehouse, formResponse } = useWarehouseList(onRefresh);
 </script>

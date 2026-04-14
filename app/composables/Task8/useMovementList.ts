@@ -20,7 +20,7 @@ const useMovementList = (refresh: () => void) => {
 
             deleteResponse.value = {
                 isSucceed: true,
-                message: `Successfully deleted movement with ID ${movementId} of warehouse with ID ${warehouseId}`,
+                message: `Successfully deleted movement with ID ${deletedMovement.id} of warehouse with ID ${warehouseId}`,
             };
 
             refresh();

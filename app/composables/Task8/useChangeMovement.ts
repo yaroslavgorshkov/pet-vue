@@ -200,9 +200,9 @@ const useChangeMovement = (props: Props, refresh: () => void) => {
     const validateMonth = () => {
         formValidationMessages.value.month = '';
 
-        if (!isEmpty(month.value)) {
+        if (isEmpty(month.value)) {
             formValidationMessages.value.month = 'Month value cannot be empty';
-        } else if (isMonthValidFormat(month.value)) {
+        } else if (!isMonthValidFormat(month.value)) {
             formValidationMessages.value.month =
                 'Month value is invalid. Example: 2026-02';
         }
@@ -218,7 +218,7 @@ const useChangeMovement = (props: Props, refresh: () => void) => {
         if (incoming.value === '') {
             formValidationMessages.value.incoming =
                 'Incoming value cannot be empty';
-        } else if (isPositiveNumber(incoming.value)) {
+        } else if (!isPositiveNumber(incoming.value)) {
             formValidationMessages.value.incoming =
                 'Incoming value must be positive';
         }
@@ -234,7 +234,7 @@ const useChangeMovement = (props: Props, refresh: () => void) => {
         if (outgoing.value === '') {
             formValidationMessages.value.outgoing =
                 'Outgoing value cannot be empty';
-        } else if (isPositiveNumber(outgoing.value)) {
+        } else if (!isPositiveNumber(outgoing.value)) {
             formValidationMessages.value.outgoing =
                 'Outgoing value must be positive';
         }
@@ -272,9 +272,9 @@ const useChangeMovement = (props: Props, refresh: () => void) => {
         formValidationMessages.value.incoming = '';
         formValidationMessages.value.outgoing = '';
 
-        if (!isEmpty(month.value)) {
+        if (isEmpty(month.value)) {
             formValidationMessages.value.month = 'Month value cannot be empty';
-        } else if (isMonthValidFormat(month.value)) {
+        } else if (!isMonthValidFormat(month.value)) {
             formValidationMessages.value.month =
                 'Month value is invalid. Example: 2026-02';
         }
@@ -282,7 +282,7 @@ const useChangeMovement = (props: Props, refresh: () => void) => {
         if (incoming.value === '') {
             formValidationMessages.value.incoming =
                 'Incoming value cannot be empty';
-        } else if (isPositiveNumber(incoming.value)) {
+        } else if (!isPositiveNumber(incoming.value)) {
             formValidationMessages.value.incoming =
                 'Incoming value must be positive';
         }
@@ -290,7 +290,7 @@ const useChangeMovement = (props: Props, refresh: () => void) => {
         if (outgoing.value === '') {
             formValidationMessages.value.outgoing =
                 'Outgoing value cannot be empty';
-        } else if (isPositiveNumber(outgoing.value)) {
+        } else if (!isPositiveNumber(outgoing.value)) {
             formValidationMessages.value.outgoing =
                 'Outgoing value must be positive';
         }

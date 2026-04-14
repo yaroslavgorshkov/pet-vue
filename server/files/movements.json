@@ -100,8 +100,15 @@
     {
         "incoming": 1000,
         "month": "2026-02",
-        "outgoing": 1100,
+        "outgoing": 1200,
         "warehouseId": 8,
         "id": 15
+    },
+    {
+        "id": 16,
+        "incoming": 1000,
+        "month": "2026-02",
+        "outgoing": 1200,
+        "warehouseId": 8
     }
 ]

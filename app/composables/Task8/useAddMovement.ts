@@ -8,7 +8,7 @@ import type { ActionResponse, MonthlyMovement } from '~~/shared/task8/types';
 const useAddMovement = (onRefresh: () => void) => {
     const month = ref('');
     const incoming = ref<number | ''>('');
-    const outgoing = ref<number | ''>('');
+    const outgoing = ref<number | ''>('');    
 
     type FormValidationMessages = {
         month: string;
@@ -106,7 +106,7 @@ const useAddMovement = (onRefresh: () => void) => {
             formValidationMessages.value.month = 'Month cannot be empty';
         } else if (!isMonthValidFormat(month.value)) {
             formValidationMessages.value.month =
-                'Month is invalid format. Exapmle: 2026-02';
+                'Month is invalid format. Example: 2026-02';
         }
 
         if (incoming.value === '') {
@@ -123,17 +123,17 @@ const useAddMovement = (onRefresh: () => void) => {
                 'Outgoing number must be positive';
         }
 
-        const isMonthValidationMessafeEmpty =
+        const isMonthValidationMessageEmpty =
             formValidationMessages.value.month === '';
-        const isIncomingValidationMessafeEmpty =
+        const isIncomingValidationMessageEmpty =
             formValidationMessages.value.incoming === '';
-        const isOutgoingValidationMessafeEmpty =
+        const isOutgoingValidationMessageEmpty =
             formValidationMessages.value.outgoing === '';
 
         return (
-            isMonthValidationMessafeEmpty &&
-            isIncomingValidationMessafeEmpty &&
-            isOutgoingValidationMessafeEmpty
+            isMonthValidationMessageEmpty &&
+            isIncomingValidationMessageEmpty &&
+            isOutgoingValidationMessageEmpty
         );
     };
 

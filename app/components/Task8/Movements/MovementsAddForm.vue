@@ -42,7 +42,7 @@
             >
                 {{ formValidationMessages.outgoing }}
             </span>
-            <button type="submit" :disabled="!isFormValid">Add movement</button>
+            <button type="submit" :disabled="!isFormValid" class="figure">Add movement</button>
         </form>
         <span
             v-if="formResponse.message !== ''"

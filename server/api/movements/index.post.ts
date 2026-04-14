@@ -104,6 +104,7 @@ export default defineEventHandler(async (event) => {
     await setMovements(movements);
 
     const warehouseMovements = await getMovementsByWarehouseId(warehouseId);
+
     if (warehouseMovements === undefined) {
         throw createError({
             statusCode: 500,
@@ -115,11 +116,14 @@ export default defineEventHandler(async (event) => {
         (acc, m) => acc + m.incoming,
         0
     );
+
     const totalOutgoing = warehouseMovements.reduce(
         (acc, m) => acc + m.outgoing,
         0
     );
-    const isInDeficit = totalIncoming - totalOutgoing > 0;
+
+    const isInDeficit = totalIncoming - totalOutgoing < 0;
+
     const warehouses = await getWarehouses();
     if (warehouses === undefined) {
         throw createError({

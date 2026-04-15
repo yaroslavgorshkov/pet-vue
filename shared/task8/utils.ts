@@ -22,5 +22,5 @@ export const isMonthValidFormat = (month: string) => {
 };
 
 export const isPositiveNumber = (value: number) => {
-    return value > 0;
+    return value >= 0;
 };

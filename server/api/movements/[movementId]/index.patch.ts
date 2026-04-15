@@ -120,7 +120,7 @@ export default defineEventHandler(async (event) => {
         (acc, m) => acc + m.outgoing,
         0
     );
-    const isInDeficit = totalIncoming - totalOutgoing > 0;
+    const isInDeficit = totalIncoming - totalOutgoing < 0;
     const warehouses = await getWarehouses();
     if (warehouses === undefined) {
         throw createError({

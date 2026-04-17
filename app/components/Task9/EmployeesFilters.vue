@@ -28,14 +28,14 @@
                 label="Only overtime:"
             />
             <div class="line"></div>
-            <div class="flex gap-3">
+            <div class="flex gap-3 items-center">
                 Sorting:
                 <CustomTabs
                     v-model="sortingValueModel"
                     :list="employeesFiltersSortType"
                 />
             </div>
-            <div class="flex gap-3">
+            <div class="flex gap-3 items-center">
                 Direction:
                 <CustomTabs
                     v-model="sortingDirectionModel"

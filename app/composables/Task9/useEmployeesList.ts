@@ -20,6 +20,8 @@ const useEmployeesList = (refresh: () => void) => {
                 isSucceed: true,
                 message: `Successfully deleted employee with ID ${deletedEmployee.id}`,
             };
+
+            refresh();
         } catch (err: any) {
             deleteResponse.value = {
                 isSucceed: false,

@@ -1,5 +1,5 @@
 <template>
-    <ul class="flex rounded-md gap-3 p-2">
+    <ul class="flex rounded-md border gap-3 p-2">
         <li
             v-for="v in list"
             :key="v.id"

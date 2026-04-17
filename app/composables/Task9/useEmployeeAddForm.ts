@@ -42,7 +42,7 @@ const useEmployeeAddForm = (refresh: () => void) => {
     const fullNameValidation = () => {
         formValidationMessages.value.fullName = '';
 
-        if (!isEmpty(fullName.value)) {
+        if (isEmpty(fullName.value)) {
             formValidationMessages.value.fullName = 'Full name cannot be empty';
         }
 
@@ -53,7 +53,7 @@ const useEmployeeAddForm = (refresh: () => void) => {
     const departmentValidation = () => {
         formValidationMessages.value.department = '';
 
-        if (!isEmpty(department.value)) {
+        if (isEmpty(department.value)) {
             formValidationMessages.value.department =
                 'Department name cannot be empty';
         }
@@ -65,7 +65,7 @@ const useEmployeeAddForm = (refresh: () => void) => {
     const positionValidation = () => {
         formValidationMessages.value.position = '';
 
-        if (!isEmpty(position.value)) {
+        if (isEmpty(position.value)) {
             formValidationMessages.value.position =
                 'Position name cannot be empty';
         }
@@ -77,7 +77,7 @@ const useEmployeeAddForm = (refresh: () => void) => {
     const emailValidation = () => {
         formValidationMessages.value.email = '';
 
-        if (!isEmpty(email.value)) {
+        if (isEmpty(email.value)) {
             formValidationMessages.value.email = 'Email name cannot be empty';
         } else if (!isValidEmailFormat(email.value)) {
             formValidationMessages.value.email = 'Email must be valid format';
@@ -115,18 +115,18 @@ const useEmployeeAddForm = (refresh: () => void) => {
         formValidationMessages.value.email = '';
         formValidationMessages.value.fullName = '';
         formValidationMessages.value.position = '';
-        if (!isEmpty(fullName.value)) {
+        if (isEmpty(fullName.value)) {
             formValidationMessages.value.fullName = 'Full name cannot be empty';
         }
-        if (!isEmpty(department.value)) {
+        if (isEmpty(department.value)) {
             formValidationMessages.value.department =
                 'Department name cannot be empty';
         }
-        if (!isEmpty(position.value)) {
+        if (isEmpty(position.value)) {
             formValidationMessages.value.position =
                 'Position name cannot be empty';
         }
-        if (!isEmpty(email.value)) {
+        if (isEmpty(email.value)) {
             formValidationMessages.value.email = 'Email name cannot be empty';
         } else if (!isValidEmailFormat(email.value)) {
             formValidationMessages.value.email = 'Email must be valid format';
@@ -174,7 +174,7 @@ const useEmployeeAddForm = (refresh: () => void) => {
                 isSucceed: false,
                 message: '',
             };
-        });
+        }, 10000);
 
         refresh();
     };
@@ -201,7 +201,7 @@ const useEmployeeAddForm = (refresh: () => void) => {
             refreshForm();
         } catch (err: any) {
             formResponse.value = {
-                isSucceed: true,
+                isSucceed: false,
                 message:
                     err.statusMessage || 'Server error during adding employee',
             };

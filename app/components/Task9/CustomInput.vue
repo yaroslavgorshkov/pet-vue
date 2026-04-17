@@ -4,7 +4,7 @@
             {{ props.label }}
         </span>
         <input
-            class="p-4 pl-0 rounded-md rounded-l-none"
+            class="p-4 pl-0 rounded-md rounded-l-none outline-none"
             :type="props.type ?? 'text'"
             :value="props.modelValue"
             @input="onInput"

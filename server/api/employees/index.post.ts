@@ -18,7 +18,7 @@ export default defineEventHandler(async (event) => {
             statusCode: 400,
             statusMessage: 'Department must be string value',
         });
-    } else if (!isEmpty(department)) {
+    } else if (isEmpty(department)) {
         throw createError({
             statusCode: 400,
             statusMessage: 'Department cannot be empty',
@@ -30,7 +30,7 @@ export default defineEventHandler(async (event) => {
             statusCode: 400,
             statusMessage: 'Full name must be string value',
         });
-    } else if (!isEmpty(fullName)) {
+    } else if (isEmpty(fullName)) {
         throw createError({
             statusCode: 400,
             statusMessage: 'Full name cannot be empty',
@@ -42,7 +42,7 @@ export default defineEventHandler(async (event) => {
             statusCode: 400,
             statusMessage: 'Position must be string value',
         });
-    } else if (!isEmpty(position)) {
+    } else if (isEmpty(position)) {
         throw createError({
             statusCode: 400,
             statusMessage: 'Position cannot be empty',
@@ -54,7 +54,7 @@ export default defineEventHandler(async (event) => {
             statusCode: 400,
             statusMessage: 'Email must be string value',
         });
-    } else if (!isEmpty(email)) {
+    } else if (isEmpty(email)) {
         throw createError({
             statusCode: 400,
             statusMessage: 'Email cannot be empty',

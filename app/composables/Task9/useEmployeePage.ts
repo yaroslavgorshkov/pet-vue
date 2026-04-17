@@ -199,11 +199,13 @@ const useEmployeePage = () => {
     const recentWatchedEmployees = ref<Employee[]>([]);
 
     onMounted(() => {
+        console.log('LALKA');
+        
         const recentWatchedEmployeesStr = localStorage.getItem(
             'recentWatchedEmployees'
         );
         if (recentWatchedEmployeesStr === null) {
-            recentWatchedEmployees.value = [];
+            localStorage.setItem('recentWatchedEmployees', JSON.stringify([]));
             return;
         }
         try {
@@ -211,9 +213,12 @@ const useEmployeePage = () => {
                 recentWatchedEmployeesStr
             ) as Employee[];
 
-            recentWatchedEmployees.value = recentWatchedEmployeesParsed;
+            recentWatchedEmployees.value = recentWatchedEmployeesParsed.slice(
+                0,
+                5
+            );
         } catch {
-            recentWatchedEmployees.value = [];
+            localStorage.setItem('recentWatchedEmployees', JSON.stringify([]));
         }
     });
 

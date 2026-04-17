@@ -15,8 +15,15 @@
             >
                 Employee list is empty
             </div>
-            <div v-else-if="pendingE" class="figure w-full flex-1">Pending...</div>
-            <EmployeesList v-else :employees-list="filteredEmployeesList" class="flex-1" @refresh="refresh"/>
+            <div v-else-if="pendingE" class="figure w-full flex-1">
+                Pending...
+            </div>
+            <EmployeesList
+                v-else
+                :employees-list="filteredEmployeesList"
+                class="flex-1"
+                @refresh="refresh"
+            />
             <div class="flex flex-col gap-4 flex-1">
                 <EmployeesFilters
                     v-model:department-filter="departmentFilter"
@@ -42,6 +49,9 @@
                 >
                     <span>There are no recent watched employees</span>
                 </div>
+                <RecentWatchedEmployeeList v-else
+                    :employee-list="recentWatchedEmployees"
+                />
             </div>
         </div>
     </div>
@@ -54,6 +64,7 @@ import EmployeesList from '~/components/Task9/EmployeesList.vue';
 import EmployeesFilters from '~/components/Task9/EmployeesFilters.vue';
 import EmployeeAddForm from '~/components/Task9/EmployeeAddForm.vue';
 import EmployeesStatistics from '~/components/Task9/EmployeesStatistics.vue';
+import RecentWatchedEmployeeList from '~/components/Task9/RecentWatchedEmployeeList.vue';
 
 const refresh = async () => {
     await refreshE();

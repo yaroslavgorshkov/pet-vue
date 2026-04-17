@@ -71,7 +71,7 @@ export default defineEventHandler(async (event) => {
             statusCode: 400,
             statusMessage: 'Month must be a string',
         });
-    } else if (!isEmpty(month)) {
+    } else if (isEmpty(month)) {
         throw createError({
             statusCode: 400,
             statusMessage: 'Month cannot be empty',

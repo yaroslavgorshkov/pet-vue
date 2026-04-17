@@ -9,6 +9,7 @@
             :value="props.modelValue"
             @input="onInput"
             @blur="onBlur"
+            :placeholder="props.placeholder"
         />
     </div>
 </template>

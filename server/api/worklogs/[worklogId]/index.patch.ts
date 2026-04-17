@@ -86,7 +86,7 @@ export default defineEventHandler(async (event) => {
             statusCode: 400,
             statusMessage: 'Month must be a string',
         });
-    } else if (!isEmpty(month)) {
+    } else if (isEmpty(month)) {
         throw createError({
             statusCode: 400,
             statusMessage: 'Month cannot be empty',
@@ -100,10 +100,10 @@ export default defineEventHandler(async (event) => {
 
     const patchedWorklog: MonthlyWorkLog = {
         id: worklog.id,
-        employeeId: worklog.employeeId,
-        month: worklog.month,
-        plannedHours: worklog.plannedHours,
-        actualHours: worklog.actualHours,
+        employeeId,
+        month,
+        plannedHours,
+        actualHours,
     };
 
     const worklogs = await getWorklogs();
@@ -114,7 +114,11 @@ export default defineEventHandler(async (event) => {
         });
     }
 
+    console.log('worklogs', worklogs);
+
     const filteredWorklogs = worklogs.filter((w) => w.id !== worklog.id);
+    console.log('filteredWorklogs', filteredWorklogs);
+
     filteredWorklogs.push(patchedWorklog);
     if (!(await setWorklogs(filteredWorklogs))) {
         throw createError({

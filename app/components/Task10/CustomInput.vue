@@ -1,10 +1,17 @@
 <template>
     <div class="flex gap-3 rounded-md border">
-        <span class="p-4 pr-0 rounded-md rounded-r-none">{{
-            props.label
-        }}</span>
+        <span
+            v-if="props.label !== undefined && props.label !== ''"
+            class="p-4 pr-0 rounded-md rounded-r-none"
+            >{{ props.label }}</span
+        >
         <input
-            class="p-4 pl-0 rounded-md rounded-l-none outline-none"
+            class="outline-none"
+            :class="
+                props.label === undefined
+                    ? 'p-4 rounded-md'
+                    : 'p-4 pl-0 rounded-md rounded-l-none'
+            "
             :type="props.type ?? 'text'"
             @input="onInput"
             @blur="onBlur"

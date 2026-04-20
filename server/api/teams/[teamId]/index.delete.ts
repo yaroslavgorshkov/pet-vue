@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
     const deletedTeam = await getTeamById(Number(teamId));
     if (deletedTeam === undefined) {
         throw createError({
-            statusCode: 400,
+            statusCode: 404,
             statusMessage: 'There are no teams with this ID',
         });
     }

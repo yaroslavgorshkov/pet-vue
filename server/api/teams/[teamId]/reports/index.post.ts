@@ -27,10 +27,10 @@ export default defineEventHandler(async (event) => {
             statusMessage: 'Invalid team ID',
         });
     }
-    const team = getTeamById(Number(teamId));
+    const team = await getTeamById(Number(teamId));
     if (team === undefined) {
         throw createError({
-            statusCode: 400,
+            statusCode: 404,
             statusMessage: 'There are no teams with this ID',
         });
     }

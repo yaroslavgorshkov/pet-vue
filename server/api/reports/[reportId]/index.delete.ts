@@ -18,7 +18,7 @@ export default defineEventHandler(async (event) => {
     const deletingReport = await getReportById(Number(reportId));
     if (deletingReport === undefined) {
         throw createError({
-            statusCode: 400,
+            statusCode: 404,
             statusMessage: 'There are no reports with this ID',
         });
     }

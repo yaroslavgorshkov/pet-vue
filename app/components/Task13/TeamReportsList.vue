@@ -5,15 +5,15 @@
         <span v-if="deleteResponse.message !== ''" class="text-red-500">{{
             deleteResponse.message
         }}</span>
-        <li v-for="r in props.reportsList">
+        <li v-for="r in props.reportsList" class="flex flex-col gap-3 p-3 border rounded-md">
             <span>ID: {{ r.id }}</span>
             <span>Month: {{ r.month }}</span>
             <span>Planned tasks: {{ r.plannedTasks }}</span>
             <span>Completed tasks: {{ r.completedTasks }}</span>
             <div class="flex gap-10 justify-evenly">
                 <NuxtLink
-                    :to="`/task13/teams/${r.teamId}/records/${r.id}`"
-                    class="flex-1 p-3 rounded-md border"
+                    :to="`/task13/teams/${r.teamId}/reports/${r.id}`"
+                    class="flex-1 p-3 rounded-md border text-center"
                 >
                     See info
                 </NuxtLink>
@@ -44,10 +44,10 @@ const deleteResponse = ref<Response>({
     message: '',
 });
 
-const deleteReport = async (recordId: number) => {
+const deleteReport = async (reportId: number) => {
     try {
         const deletedReport = await $fetch<MonthlyReport>(
-            `/api/records/${recordId}`,
+            `/api/reports/${reportId}`,
             {
                 method: 'DELETE',
             }

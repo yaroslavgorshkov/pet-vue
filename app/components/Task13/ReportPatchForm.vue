@@ -1,10 +1,10 @@
 <template>
     <div class="flex flex-col gap-3">
-        <span>Report add form</span>
-        <div class="bg-black w-full h-px"></div>
+        <span>Patch report</span>
+        <div class="w-full h-px bg-black"></div>
         <form
             class="flex flex-col gap-4 p-4 border rounded-md"
-            @submit.prevent="addReport"
+            @submit.prevent="patchReport"
         >
             <CustomInput
                 v-model="month"
@@ -12,9 +12,11 @@
                 placeholder="2026-04"
                 @blur="validateMonth"
             />
-            <span v-if="formValidationMessages.month !== ''" class="text-red-500">{{
-                formValidationMessages.month
-            }}</span>
+            <span
+                v-if="formValidationMessages.month !== ''"
+                class="text-red-500"
+                >{{ formValidationMessages.month }}</span
+            >
 
             <CustomInput
                 v-model="plannedTasks"
@@ -47,7 +49,7 @@
                 :disabled="!isFormValid"
                 type="submit"
             >
-                Add
+                Patch
             </button>
         </form>
         <span
@@ -60,8 +62,13 @@
 </template>
 
 <script setup lang="ts">
-import useReportAddForm from '~/composables/Task13/useReportAddForm';
+import useReportPatchForm from '~/composables/Task13/useReportPatchForm';
 import CustomInput from './CustomInput.vue';
+import type { MonthlyReport } from '~~/shared/task13/types';
+
+const props = defineProps<{
+    report: MonthlyReport | undefined;
+}>()
 
 const emit = defineEmits<{
     (e: 'refresh'): void;
@@ -69,7 +76,7 @@ const emit = defineEmits<{
 
 const refresh = () => {
     emit('refresh');
-};
+}
 
 const {
     month,
@@ -81,6 +88,6 @@ const {
     isFormValid,
     formValidationMessages,
     formResponse,
-    addReport,
-} = useReportAddForm(refresh);
+    patchReport,
+} = useReportPatchForm(props, refresh);
 </script>

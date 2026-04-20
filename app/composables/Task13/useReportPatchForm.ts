@@ -5,7 +5,11 @@ import {
     isPositiveNumber,
 } from '~~/shared/task13/utils';
 
-const useReportAddForm = (refresh: () => void) => {
+type Props = {
+    report: MonthlyReport | undefined;
+};
+
+const useReportPatchForm = (props: Props, refresh: () => void) => {
     const month = ref('');
     const plannedTasks = ref<number | ''>('');
     const completedTasks = ref<number | ''>('');
@@ -95,6 +99,21 @@ const useReportAddForm = (refresh: () => void) => {
             isFormTouched.value.plannedTasks
         );
     });
+
+    watch(
+        () => props.report,
+        (reportNew) => {
+            if (reportNew === undefined) return;
+            month.value = reportNew.month;
+            plannedTasks.value = reportNew.plannedTasks;
+            completedTasks.value = reportNew.completedTasks;
+            isFormTouched.value = {
+                completedTasks: true,
+                month: true,
+                plannedTasks: true,
+            };
+        }
+    );
 
     const validateMonth = () => {
         formValidationMessages.value.month = '';
@@ -212,17 +231,16 @@ const useReportAddForm = (refresh: () => void) => {
     };
 
     const route = useRoute();
-    const teamId = computed(() => route.params.teamId || '');
+    const reportId = computed(() => route.params.reportId || '');
 
-    const addReport = async () => {
+    const patchReport = async () => {
         if (!revalidateForm()) return;
         try {
-            const newReport = await $fetch<MonthlyReport>(
-                `/api/teams/${teamId.value}/reports`,
+            const patchedReport = await $fetch<MonthlyReport>(
+                `/api/reports/${reportId.value}`,
                 {
-                    method: 'POST',
+                    method: 'PATCH',
                     body: {
-                        teamId: Number(teamId.value),
                         month: month.value,
                         completedTasks: completedTasks.value,
                         plannedTasks: plannedTasks.value,
@@ -232,7 +250,7 @@ const useReportAddForm = (refresh: () => void) => {
 
             formResponse.value = {
                 isSucceed: true,
-                message: `Successfully added new report with ID ${newReport.id}`,
+                message: `Successfully patched report with ID ${patchedReport.id}`,
             };
 
             refreshForm();
@@ -240,8 +258,7 @@ const useReportAddForm = (refresh: () => void) => {
             formResponse.value = {
                 isSucceed: false,
                 message:
-                    err.statusMessage ||
-                    'Server error during adding new report',
+                    err.statusMessage || 'Server error during patching report',
             };
         }
     };
@@ -256,8 +273,8 @@ const useReportAddForm = (refresh: () => void) => {
         isFormValid,
         formValidationMessages,
         formResponse,
-        addReport,
+        patchReport,
     };
 };
 
-export default useReportAddForm;
+export default useReportPatchForm;

@@ -13,7 +13,6 @@
         "plannedTasks": 15,
         "completedTasks": 13
     },
-
     {
         "id": 3,
         "teamId": 2,
@@ -28,7 +27,6 @@
         "plannedTasks": 10,
         "completedTasks": 10
     },
-
     {
         "id": 5,
         "teamId": 3,
@@ -43,13 +41,12 @@
         "plannedTasks": 12,
         "completedTasks": 12
     },
-
     {
+        "completedTasks": 20,
         "id": 7,
-        "teamId": 4,
-        "month": "2026-03",
+        "month": "2026-04",
         "plannedTasks": 20,
-        "completedTasks": 15
+        "teamId": 4
     },
     {
         "id": 8,
@@ -58,7 +55,6 @@
         "plannedTasks": 20,
         "completedTasks": 15
     },
-
     {
         "id": 9,
         "teamId": 5,
@@ -73,7 +69,6 @@
         "plannedTasks": 8,
         "completedTasks": 8
     },
-
     {
         "id": 11,
         "teamId": 6,
@@ -88,7 +83,6 @@
         "plannedTasks": 25,
         "completedTasks": 20
     },
-
     {
         "id": 13,
         "teamId": 7,

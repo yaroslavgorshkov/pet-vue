@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex=col gap-3">
+    <div class="flex flex-col gap-3">
         <span>Team info</span>
         <div class="h-px w-full bg-black"></div>
         <div class="flex flex-col gap-4 p-4 border rounded-md">

@@ -1,0 +1,58 @@
+[
+    {
+        "id": 1,
+        "title": "Engine Core",
+        "code": "ENG-CR",
+        "lead": "Yaroslav Gorshkov",
+        "description": "Core game engine development team.",
+        "isBehindPlan": true
+    },
+    {
+        "id": 2,
+        "title": "Web Frontend",
+        "code": "WEB-FR",
+        "lead": "Alex Smith",
+        "description": "Vue.js and Nuxt 3 administration panel.",
+        "isBehindPlan": false
+    },
+    {
+        "id": 3,
+        "title": "Physics Lab",
+        "code": "PHY-LB",
+        "lead": "Dmitry Volkov",
+        "description": "Collision and fluid simulation systems.",
+        "isBehindPlan": false
+    },
+    {
+        "id": 4,
+        "title": "Art Assets",
+        "code": "ART-AS",
+        "lead": "Elena Green",
+        "description": "3D models and high-quality textures.",
+        "isBehindPlan": true
+    },
+    {
+        "id": 5,
+        "title": "Network Sync",
+        "code": "NET-SN",
+        "lead": "Ivan Ivanov",
+        "description": "Multiplayer synchronization and latency optimization.",
+        "isBehindPlan": false
+    },
+    {
+        "id": 6,
+        "title": "Dark Fantasy Mod",
+        "code": "MOD-DF",
+        "lead": "Sergey Morozov",
+        "description": "Minecraft total conversion project.",
+        "isBehindPlan": true
+    },
+    {
+        "id": 7,
+        "title": "UX Research",
+        "code": "UX-RS",
+        "lead": "Anna White",
+        "description": "User interface testing and physiological limits study.",
+        "isBehindPlan": false
+    }
+]

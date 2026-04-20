@@ -1,0 +1,106 @@
+[
+    {
+        "id": 1,
+        "teamId": 1,
+        "month": "2026-03",
+        "plannedTasks": 15,
+        "completedTasks": 12
+    },
+    {
+        "id": 2,
+        "teamId": 1,
+        "month": "2026-04",
+        "plannedTasks": 15,
+        "completedTasks": 13
+    },
+
+    {
+        "id": 3,
+        "teamId": 2,
+        "month": "2026-03",
+        "plannedTasks": 10,
+        "completedTasks": 10
+    },
+    {
+        "id": 4,
+        "teamId": 2,
+        "month": "2026-04",
+        "plannedTasks": 10,
+        "completedTasks": 10
+    },
+
+    {
+        "id": 5,
+        "teamId": 3,
+        "month": "2026-03",
+        "plannedTasks": 12,
+        "completedTasks": 14
+    },
+    {
+        "id": 6,
+        "teamId": 3,
+        "month": "2026-04",
+        "plannedTasks": 12,
+        "completedTasks": 12
+    },
+
+    {
+        "id": 7,
+        "teamId": 4,
+        "month": "2026-03",
+        "plannedTasks": 20,
+        "completedTasks": 15
+    },
+    {
+        "id": 8,
+        "teamId": 4,
+        "month": "2026-04",
+        "plannedTasks": 20,
+        "completedTasks": 15
+    },
+
+    {
+        "id": 9,
+        "teamId": 5,
+        "month": "2026-03",
+        "plannedTasks": 8,
+        "completedTasks": 9
+    },
+    {
+        "id": 10,
+        "teamId": 5,
+        "month": "2026-04",
+        "plannedTasks": 8,
+        "completedTasks": 8
+    },
+
+    {
+        "id": 11,
+        "teamId": 6,
+        "month": "2026-03",
+        "plannedTasks": 25,
+        "completedTasks": 20
+    },
+    {
+        "id": 12,
+        "teamId": 6,
+        "month": "2026-04",
+        "plannedTasks": 25,
+        "completedTasks": 20
+    },
+
+    {
+        "id": 13,
+        "teamId": 7,
+        "month": "2026-03",
+        "plannedTasks": 7,
+        "completedTasks": 7
+    },
+    {
+        "id": 14,
+        "teamId": 7,
+        "month": "2026-04",
+        "plannedTasks": 7,
+        "completedTasks": 7
+    }
+]
